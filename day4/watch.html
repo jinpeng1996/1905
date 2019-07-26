@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="box">
+        <input type="text" v-model="search">
+        <div v-html="html22"></div>
+
+    </div>
+
+    <script src="vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el: '#box',
+            data: {
+                search: "",
+                html: "吹红了桃花 吹绿了柳树 你在路上总会安慰谁 吹醒了青蛙 吹来了燕子 在城里刚好缺了谁 你纵然带来地下的玫瑰 能否收回地上的滋味 有人唱胡不归 春风一吹想起谁"
+            },
+            computed: {
+                html22: function () {
+                    var arr = this.html.split(this.search)
+                    var str = arr.join("<span style='color:red'>" + this.search + "</span>")
+                    return str
+                }
+
+
+            }
+
+
+        })
+    </script>
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            width: 100%;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            color: white;
+            background-color: red;
+        }
+    </style>
+    <div id="demo">
+    </div>
+    <script src="vue.js"></script>
+    <script>
+        Vue.component('my-header', {
+            // 从标签的属性值上面获取父组件给我的值
+            data() {
+                return {
+                    name: 'yao'
+                }
+            },
+            props: ['abc', 'title', 'color'],
+            template: `
+                <header  :style="{
+                    backgroundColor: color
+                }" v-html="title">
+                    头部组件
+                    <input v-model="name" />
+                </header>
+            `
+        })
+
+        // 根容器
+        new Vue({
+            el: "#demo",
+            data: {
+                num: 1000,
+                title: '未能获取地址',
+
+            },
+            template: `
+                <div>
+                    <my-header color="red" :title="title" :abc="num"></my-header>
+                    <my-header color="blue" title="选择收货地址" :abc="num"></my-header>
+                </div>
+            `,
+
+        })
+
+        // Vue.component('my-header', {
+        //     template: `
+        //         <header>
+        //             头部组件
+        //             <input v-model="name" />
+        //         </header>
+        //     `
+        // })
+
+        // 根容器
+        // new Vue({
+        //     el: "#demo",
+        //     template: `
+        //         <div>
+        //             <my-header></my-header>
+        //             <my-header></my-header>
+        //         </div>
+        //     `
+        // })
+    </script>
+</body>
+
+</html>
